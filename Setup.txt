@@ -1,0 +1,54 @@
+###Python Client Load Tester Install###
+This document is for centos 6.5 only, please use this only as a guide for other platforms and not step by step install
+
+
+###Packages that need to be installed###
+Python 
+Python-setuptools
+Python-devel
+Gcc
+GCC-c++
+FreeTDS
+FreeTDS-Devel
+FreeTDS.x86_64
+UnixODBC
+Samba
+
+
+After all the packages above are installed here are the next steps
+
+	#Disable SELinux
+		nano /etc/sysconfig/selinux
+		set line "SELINUX=enabled" to "SELINUX=disabled"
+	
+	#Use pip to install pyodbc
+		pip install pyodbc
+	
+	#Reboot for SELINUX disabled to take affect
+
+	#Check to make sure Python is version 2.6 or newer but not 3
+		python -V
+	
+	#Run python in verbose mode to make sure ODBC package was installed properyl
+		python -v
+		then run from the python command prompt >> import python-odbc
+		Should not show any errors like "ImportError: No module named pyodbcs"
+
+	#Register FreeTDS in UnixODBC
+		nano /etc/odbcinst.ini
+		add lines :	
+				#Driver for SQL
+				[TDS]
+				Driver = /usr/local/freetds/lib/libtdsodbc.so
+				FileUsage = 1
+				Threading = 1
+
+		Note the driver location maybe different pending package updates so you may want to run "sudo dbupdate" then run "locate libtdsodbc.so | grep -i freetds" to get the directory
+		From now on in the serversettings.xml file the driver for sql with be referenced by the name in the [] above so in this case DRIVER={TDS}
+
+	
+
+
+
+		
+	

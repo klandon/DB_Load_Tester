@@ -1,0 +1,16 @@
+<servers>
+	<server>
+		<name>Logging</name>
+		<connectionType>ODBC</connectionType>
+		<databaseType>MSSQL</databaseType>
+		<connectionString>DRIVER={SQL Server};SERVER=localhost;DATABASE=LoadTesting;UID=python.testing;PWD=thisisatest;</connectionString>
+		<versionQuery>SELECT @@VERSION</versionQuery>
+	</server>
+	<server>
+		<name>PGLogging</name>
+		<connectionType>ODBC</connectionType>
+		<databaseType>PostgreSQL</databaseType>
+		<connectionString>DRIVER={PostgreSQL ANSI(x64)};SERVER=localhost;DATABASE=LoadTesting;UID=python.testing;PWD=thisisatest;</connectionString>
+		<versionQuery>SELECT VERSION()</versionQuery>
+	</server>
+</servers>
